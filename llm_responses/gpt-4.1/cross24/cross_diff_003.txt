@@ -1,0 +1,18 @@
+```json
+{
+  "instances": [
+    {
+      "type": 6,
+      "faces": [2, 3, 4, 9, 13, 12, 15, 16, 17]
+    }
+  ]
+}
+```
+**Explanation (not part of output):**
+- All non-stock faces are predicted as `rectangular_through_slot(6)`.
+- Faces 2, 3, 4, 9, 13 form a slot on the left half (connected via concave edges and parallel/collinear axes).
+- Faces 12, 15, 16, 17 form a slot on the right half (again, connected via concave edges and parallel/collinear axes).
+- Face 13 and 12 are joined by concave edges and share the same slot axis, acting as the merged bottom at the slot crossing (per rule 3 and 4, shared between both slot instances).
+- However, the geometry and adjacency (concave edges between 9-13 and 12-13) indicate a single large "+" shaped slot, with a merged bottom (13, 12) and two pairs of parallel side walls (2/4 and 15/17), and two central floors (3, 16).
+- Per rule 5, the two interrupted slot arms (left-right and top-bottom) are not separate instances, but one unified slot feature.
+- Thus, all these faces belong to a single slot instance.

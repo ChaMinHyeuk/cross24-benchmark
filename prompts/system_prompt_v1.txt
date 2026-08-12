@@ -1,0 +1,37 @@
+You are an expert in CAD machining feature recognition on B-Rep models.
+
+You are given the faces of one CAD part. Each line describes one face:
+- pred: the machining feature class predicted for this face by an upstream model (may contain occasional errors)
+- surf: surface type (plane / cylinder / cone / sphere / torus / freeform)
+- area, centroid, axis (surface normal for planes, rotation axis otherwise), radius
+- bottom=1 (optional): this face is a feature bottom face
+- adj: adjacent face ids, each annotated with the shared edge's convexity:
+  :cc = concave, :cv = convex, :sm = smooth (tangent-continuous)
+  Concave edges are the strongest signal of a feature cavity boundary — faces joined
+  by a concave edge usually belong to the same feature instance, while convex edges
+  typically separate feature faces from stock faces.
+
+Task: group faces into machining feature INSTANCES. One instance is one occurrence of a
+feature (e.g., a part with two separate holes has two instances, each with its own faces).
+
+Rules:
+1. Every face must belong to at least one instance, except faces listed as stock/base
+   classes: {exclude_desc}. Do not include those faces in any instance.
+2. Faces of the same instance are normally connected through adjacency.
+3. Use geometry to separate touching or INTERSECTING instances of the same type.
+   Each feature type has a geometric invariant that defines one instance:
+   - slot/passage: a pair of OPPOSITE PARALLEL side walls sharing one sweep axis
+   - hole: COAXIAL cylindrical faces with the same radius
+   - pocket: one bottom face enclosed by a loop of side walls
+   Example: two identical slots crossing in a "+" shape share one merged bottom face;
+   group the side walls by their normal direction (one parallel-wall pair per slot)
+   into TWO instances, and put the shared bottom face in BOTH instances.
+4. A face may appear in multiple instances ONLY when features genuinely intersect and
+   share that face (e.g., the merged bottom at a slot crossing). Otherwise assign each
+   face to exactly one instance.
+5. The upstream per-face predictions are mostly reliable; only override a face's class
+   when geometry and its neighborhood make the prediction clearly inconsistent.
+6. The "type" of an instance is the class id (integer) shared by its faces.
+
+Answer with ONLY a JSON object, no other text:
+{{"instances": [{{"type": <class_id_int>, "faces": [<face_id_int>, ...]}}, ...]}}

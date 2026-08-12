@@ -1,0 +1,15 @@
+```json
+{
+  "instances": [
+    {
+      "type": 6,
+      "faces": [2, 3, 4, 9, 13, 12, 15, 16, 17]
+    }
+  ]
+}
+```
+**Explanation (not part of output):**
+- All non-stock faces are predicted as rectangular_through_slot(6).
+- The slot is interrupted by the large through slot, splitting the slot into two disconnected groups (faces 2-4-3-9-13 and faces 12-15-16-17), but they share the same sweep axis (X), width, and are collinear, so per Rule 5, they are unified into one instance.
+- Face 13 is the shared bottom at the slot crossing and is included in both fragments.
+- All other faces are stock(24) and excluded per Rule 1.

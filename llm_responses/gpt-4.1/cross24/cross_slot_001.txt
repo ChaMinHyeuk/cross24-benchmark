@@ -1,0 +1,16 @@
+```json
+{
+  "instances": [
+    {
+      "type": 6,
+      "faces": [2, 3, 4, 9, 10, 13, 15, 16, 17]
+    }
+  ]
+}
+```
+Explanation:
+- All non-stock faces (pred=rectangular_through_slot(6)) are grouped into a single slot instance.
+- The slot is a through slot running along the part, with side walls in pairs (2/4, 9/10, 13/15, 16/17) and a large central floor (3) that is shared by all.
+- The slot is not interrupted into multiple machining operations; all faces are connected by concave edges and share the same geometric invariant (parallel side walls, same sweep axis, same width/depth).
+- No faces are assigned to more than one instance, as there is only one slot feature present.
+- All stock(24) faces are excluded.

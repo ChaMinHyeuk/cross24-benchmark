@@ -1,0 +1,11 @@
+```json
+{
+  "instances": [
+    {"type": 21, "faces": [2, 4]},
+    {"type": 22, "faces": [7, 8, 13]},
+    {"type": 1, "faces": [9]},
+    {"type": 8, "faces": [11, 12]},
+    {"type": 13, "faces": [14, 15, 16, 17]}
+  ]
+}
+```

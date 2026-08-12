@@ -1,0 +1,20 @@
+```json
+{
+  "instances": [
+    {
+      "type": 6,
+      "faces": [2, 3, 4, 12, 15]
+    },
+    {
+      "type": 14,
+      "faces": [9, 10, 11, 14, 16, 17, 3]
+    }
+  ]
+}
+```
+**Explanation of grouping:**
+
+- **rectangular_through_slot(6):** Faces 2, 3, 4, 12, 15 form a slot running along the Y direction (axis ≈ [0,1,0]), with 3 as the large bottom face and 2/4, 12/15 as the parallel side walls. These are all connected via concave edges and share the slot's geometric invariant (parallel side walls, one sweep axis). Face 3 is shared with the pocket (see below) due to intersection (slot passes through the pocket floor).
+- **rectangular_pocket(14):** Faces 9, 10, 11, 14, 16, 17 form the pocket: 9/11/14/16 are the side walls (axis ≈ [1,0,0]), 10/17 are the Y-direction walls, and 3 is the bottom face (shared with the slot, as the slot cuts through the pocket). All are connected via concave edges and enclose a single bottom face (3), matching the pocket invariant.
+
+Stock faces (0, 1, 5, 6, 7, 8, 13) are excluded per instructions.

@@ -1,0 +1,16 @@
+```json
+{
+  "instances": [
+    {
+      "type": 6,
+      "faces": [2, 3, 4, 9, 13, 12, 15, 16, 17]
+    }
+  ]
+}
+```
+
+**Explanation:**
+- All faces with `pred=rectangular_through_slot(6)` are connected via concave edges (cc) and/or share a common geometric invariant: they form a single, long slot passing through the part, interrupted by the intersection of two slots (one along X, one along Y), but unified by their collinear axes and equal width/depth.
+- The bottom faces at the slot crossing (face_13 and face_16) are shared by both slot directions, but since all slot faces are part of a single, intersecting slot system (not two separate slots), they are grouped into one instance.
+- All other faces are either stock(24) or not part of any other feature instance.
+- No face is assigned to more than one instance, as the slot system is unified per the rules.

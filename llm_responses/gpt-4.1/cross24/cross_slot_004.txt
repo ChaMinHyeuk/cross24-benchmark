@@ -1,0 +1,15 @@
+```json
+{
+  "instances": [
+    {
+      "type": 6,
+      "faces": [2, 3, 4, 9, 10, 13, 15, 16, 17]
+    }
+  ]
+}
+```
+Explanation:
+- All faces with pred=rectangular_through_slot(6) are connected through concave (cc) edges, forming a single large slot feature instance.
+- The slot is interrupted by the intersection of two orthogonal slots (as seen by the axis directions and face centroids), but per Rule 5, these fragments are unified into one instance because they share the same sweep axes and width/depth.
+- Faces 2, 4, 16, 17 are parallel side walls (axis=[-0.00, 1.00, 0.00]), and faces 9, 10, 13, 15 are the other set of parallel side walls (axis=[1.00, 0.00, -0.00]). Face 3 is the large shared bottom face, included in both slot directions.
+- All other faces are stock(24) and excluded per Rule 1.

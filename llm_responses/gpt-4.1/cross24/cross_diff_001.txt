@@ -1,0 +1,18 @@
+```json
+{
+  "instances": [
+    {
+      "type": 6,
+      "faces": [2, 3, 4, 9, 13]
+    },
+    {
+      "type": 6,
+      "faces": [12, 13, 15, 16, 17]
+    }
+  ]
+}
+```
+**Explanation:**
+- Faces 2, 3, 4, 9, 13 form one slot instance: they are connected through concave edges, have parallel/collinear axes, and together form a through slot along Y (faces 2/4 are parallel sides, 3/13 are bottoms, 9 is the connecting floor).
+- Faces 12, 13, 15, 16, 17 form the crossing slot: 12/15/17 are parallel sides, 16/13 are bottoms, all axes are parallel/collinear along X, and 13 is the shared bottom at the intersection (so it appears in both instances).
+- All other faces are stock(24) and excluded.

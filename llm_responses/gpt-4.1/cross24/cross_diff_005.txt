@@ -1,0 +1,14 @@
+```json
+{
+  "instances": [
+    {
+      "type": 6,
+      "faces": [2, 3, 4, 9, 13, 12, 15, 16, 17]
+    }
+  ]
+}
+```
+**Explanation:**
+- All non-stock faces (pred=rectangular_through_slot(6)) are connected via concave edges and/or share the same geometric invariants (parallel side walls, same axis, and width), forming a single large slot instance that traverses the part and is interrupted by a crossing slot, but per Rule 5, these are unified into one instance.
+- Faces 2, 3, 4, 9, 13 form one slot (left-right), and faces 12, 15, 16, 17 form the crossing slot (top-bottom), but they share face 13 (the merged bottom at the crossing), so both slot fragments are unified into one instance.
+- All other faces are stock(24) and excluded.

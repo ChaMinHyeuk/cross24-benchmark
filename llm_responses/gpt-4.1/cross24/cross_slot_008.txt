@@ -1,0 +1,15 @@
+```json
+{
+  "instances": [
+    {
+      "type": 6,
+      "faces": [2, 3, 4, 9, 10, 13, 15, 16, 17]
+    }
+  ]
+}
+```
+**Explanation (not part of output):**
+- All non-stock faces (pred=rectangular_through_slot(6)) are connected through concave edges and share a consistent slot geometry.
+- The slot is interrupted by stock faces but forms a single through slot instance, as all slot faces are collinear and share the same width and sweep direction.
+- No faces are assigned to more than one instance, as there is only one slot feature present.
+- All stock(24) faces are excluded.
