@@ -1,0 +1,12 @@
+{
+  "precision": 0.9795918367346939,
+  "recall": 1.0,
+  "f1": 0.9896907216494846,
+  "mean_matched_iou": 0.9910714285714285,
+  "tp": 48,
+  "n_pred": 49,
+  "n_gt": 48,
+  "n_parts": 24,
+  "n_parse_failed": 0,
+  "model": "gpt-5.5"
+}

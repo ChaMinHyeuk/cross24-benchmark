@@ -1,0 +1,17 @@
+{
+  "triple_cross": {
+    "made": 6,
+    "tries": 6,
+    "rejects": []
+  },
+  "oblique_cross": {
+    "made": 6,
+    "tries": 6,
+    "rejects": []
+  },
+  "hole_slot": {
+    "made": 6,
+    "tries": 6,
+    "rejects": []
+  }
+}

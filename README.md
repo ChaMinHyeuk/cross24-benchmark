@@ -82,3 +82,44 @@ running. The benchmark data itself is fully self-contained.
 ## Citation
 
 Citation information will be added upon acceptance of the accompanying paper.
+
+## Update (2026-09): held-out variants, threshold analysis, and additional runs
+
+The revision adds material that is referenced in the revised manuscript.
+
+### heldout18 — variants generated after the prompt was frozen
+
+`heldout18/` contains 18 parts in three intersection types that do not occur in cross24 and on
+which the prompt was never developed (seed 11, zero generator rejects; `generator/gen_heldout_variants.py`):
+
+| Variant | Parts | Faces | Ground-truth structure |
+|---|---|---|---|
+| `triple_cross_*` | 6 | 26 | three equal-depth through slots; one H-shaped floor shared by **three** instances |
+| `oblique_cross_*` | 6 | 18 | two equal-depth through slots crossing at 30-60 deg; non-rectangular shared floor |
+| `hole_slot_*` | 6 | 14 | through slot interrupted by a wider vertical through hole (class 1); slot floor and walls severed, no shared face |
+
+Layout mirrors `benchmark/` (`steps/`, `gt_instances/`, `face_labels/`, `face_attributes/`).
+LLM responses on this set are in `llm_responses/<model>/heldout18/` (gpt-5.5 and gemini-3.1-pro: F1 1.000 at every IoU threshold).
+
+### Threshold sensitivity and the exclusive-partition oracle
+
+`evaluation/reviewer_analysis.py` reports F1 at IoU thresholds 0.5 / 0.75 / 0.9 / 1.0, a class-agnostic
+variant, and an **oracle exclusive partition**: the best F1 any method that assigns each face to exactly
+one instance can reach, computed from the ground truth. On cross24 the oracle is 1.000 at tau <= 0.75 and
+0.625 at tau >= 0.9 (0.571 on heldout18), so the exclusive representation is binding only under strict
+matching; at tau = 0.5 the low scores of partition-based methods are grouping failures (merging or
+fragmenting), not representational ones. Results: `supplementary/reviewer_analysis.json`.
+
+### Supplementary runs
+
+- `supplementary/label_source_decomposition/` — gpt-5.5 on mfinst30 with ground-truth face labels and with
+  the official AAGNet's predicted labels as Stage 2 input (F1 0.992 / 0.992).
+- `supplementary/mfinstseg_hard_subset/` — the 129 MFInstSeg test parts that contain a touching or
+  interrupted instance (`mfinstseg_hard_subset.json`, stratification script `evaluation/mfinstseg_hard_subset.py`),
+  with gpt-5.5 (F1 0.908) and official-AAGNet (0.965) predictions; connected components: 0.795.
+- `supplementary/repeated_runs/` — five additional cross24 runs each for gpt-5.5, gpt-4o and gpt-4o-mini
+  (`review_experiments.json` for the per-run F1).
+
+Note: the official AAGNet cannot take external face labels (its semantic and instance heads are predicted
+jointly), so on cross24/heldout18 it was run end-to-end with its own predicted labels; the other compared
+methods received the ground-truth labels.

@@ -1,0 +1,12 @@
+{
+  "precision": 1.0,
+  "recall": 1.0,
+  "f1": 1.0,
+  "mean_matched_iou": 1.0,
+  "tp": 42,
+  "n_pred": 42,
+  "n_gt": 42,
+  "n_parts": 18,
+  "n_parse_failed": 0,
+  "model": "gemini-3.1-pro-preview"
+}
