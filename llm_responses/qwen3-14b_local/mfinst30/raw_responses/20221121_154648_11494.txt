@@ -1,0 +1,1 @@
+{"instances": [{"type": 3, "faces": [6, 7, 8, 9]}, {"type": 3, "faces": [10, 11, 12, 13]}, {"type": 8, "faces": [14, 15]}, {"type": 11, "faces": [16, 17, 18]}]}

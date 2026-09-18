@@ -123,3 +123,10 @@ fragmenting), not representational ones. Results: `supplementary/reviewer_analys
 Note: the official AAGNet cannot take external face labels (its semantic and instance heads are predicted
 jointly), so on cross24/heldout18 it was run end-to-end with its own predicted labels; the other compared
 methods received the ground-truth labels.
+
+### Open-weight model and hard-subset label decomposition (added)
+
+- `llm_responses/qwen3-14b_local/` — Qwen3-14B (4-bit, thinking mode) served locally with Ollama on a 16 GB GPU
+  (`Modelfile`: 16k context, temperature 0) with the unchanged prompt v2. cross24 F1 0.313, mfinst30 see `llm_metrics.json`.
+- `supplementary/mfinstseg_hard_subset/gpt-5.5_gt_labels/` — gpt-5.5 on the 129 hard parts with ground-truth face
+  labels as input: F1 0.983 (AAGNet official 0.965, connected components with ground-truth labels 0.913).
